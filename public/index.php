@@ -1,3 +1,8 @@
 <?php
 
-echo "Hello from public";
+session_start();
+
+require "../app/core/init.php";
+
+$app = new App;
+$app->loadController();
