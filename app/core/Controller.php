@@ -6,14 +6,11 @@ class Controller
     {
         $viewFileName = $this->getViewFileName($name);
 
-        try {
-            if (file_exists($viewFileName)) {
-                require $viewFileName;
-            } else {
-                throw new Exception("View '{$name}' not found.");
-            }
-        } catch (Exception $e) {
-            $this->handleError("View Error", $e);
+        if (file_exists($viewFileName)) {
+            require $viewFileName;
+        } else {
+            // Load the 404 view page
+            $this->load404Page();
         }
     }
 
@@ -22,10 +19,9 @@ class Controller
         return "../app/views/{$name}.view.php";
     }
 
-    private function handleError($title, Exception $e)
+    private function load404Page()
     {
-        echo "<h1>{$title}</h1>";
-        echo "<p>{$e->getMessage()}</p>";
-        // Log the error or take other appropriate actions here.
+        // Load the 404 view page
+        require "../app/views/404.view.php";
     }
 }
