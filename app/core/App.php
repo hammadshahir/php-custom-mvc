@@ -1,40 +1,49 @@
 <?php
-    class App
+class App
+{
+    private $controller = 'home';
+    private $method = 'index';
+
+    private function getURL()
     {
-        public function loadController()
-        {
-            $url = $this->getURL();
-            $controllerName = ucfirst(array_shift($url));
+        $URL = $_GET['url'] ?? 'home';
+        return explode("/", $URL);
+    }
 
-            try {
-                $controllerFileName = "../app/controllers/{$controllerName}.php";
+    public function loadController()
+    {
+        $URL = $this->getURL();
+        $controllerName = ucfirst($URL[0]);
+        $controllerFileName = "../app/controllers/{$controllerName}.php";
 
-                if (file_exists($controllerFileName)) {
-                    require_once $controllerFileName;
+        try {
+            if (file_exists($controllerFileName)) {
+                require_once $controllerFileName;
+                if (class_exists($controllerName)) {
+                    $this->controller = $controllerName;
                 } else {
-                    throw new Exception("The controller file '{$controllerName}.php' does not exist.");
+                    throw new Exception("Controller class '{$controllerName}' not found.");
                 }
-            } catch (Exception $e) {
-                $this->handleError("Controller Error", $e);
+            } else {
+                require_once '../app/controllers/_404.php';
+                $this->controller = '_404';
             }
-        }
 
-        private function getURL()
-        {
-            $url = $_GET['url'] ?? 'home';
-
-            try {
-                $url = explode("/", $url);
-                return $url;
-            } catch (Exception $e) {
-                return [];
+            if (class_exists($this->controller)) {
+                $controller = new $this->controller;
+                call_user_func_array([$controller, $this->method], []);
+            } else {
+                throw new Exception("Controller class '{$this->controller}' not found.");
             }
-        }
-
-        private function handleError($title, Exception $e)
-        {
-            echo "<h1>{$title}</h1>";
-            echo "<p>{$e->getMessage()}</p>";
-            // Log the error or take other appropriate actions here.
+        } catch (Exception $e) {
+            $this->handleError("Controller Error", $e);
         }
     }
+
+    private function handleError($title, Exception $e)
+    {
+        echo "<h1>{$title}</h1>";
+        echo "<p>{$e->getMessage()}</p>";
+        // Log the error or take other appropriate actions here.
+    }
+}
