@@ -1,7 +1,22 @@
 <?php
 if($_SERVER['SERVER_NAME'] == 'localhost')
 {
+    /* Database defs. */
+    define('DBNAME', 'php_mvc');
+    define('DBHOST', 'localhost:8888');
+    define('DBUSER', 'root');
+    define('DBPASS', 'root');
+    define('DBDRIVER', '');
+
     define ('ROOT', 'http://localhost:8888/php/php-custom-mvc/public');
 } else {
+    /* Database defs. */    
+    define('DBNAME', 'php_mvc');
+    define('DBHOST', 'localhost:8888');
+    define('DBUSER', 'root');
+    define('DBPASS', 'root');
+    define('DBDRIVER', '');
+
     define ('ROOT', 'https://www.YourWebsite.com');
+
 }

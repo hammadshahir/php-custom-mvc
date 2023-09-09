@@ -1,5 +1,5 @@
 # PHP MVC Framework
- The minimal MVC in PHP to jump start small web application.
+ The minimal MVC in PHP to jump start small web applications.
 
 ## Features
 <ul>
