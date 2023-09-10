@@ -7,7 +7,7 @@
         private function getURL()
         {
             $URL = $_GET['url'] ?? 'home';
-            return explode("/", $URL);
+            return explode("/", trim($URL, "/"));
         }
 
         public function loadController()
@@ -17,24 +17,36 @@
             $controllerFileName = "../app/controllers/{$controllerName}.php";
 
             try {
+                // Select controller
                 if (file_exists($controllerFileName)) {
                     require_once $controllerFileName;
                     if (class_exists($controllerName)) {
                         $this->controller = $controllerName;
+                        unset($URL[0]);
                     } else {
+
                         throw new Exception("Controller class '{$controllerName}' not found.");
                     }
                 } else {
                     require_once '../app/controllers/_404.php';
                     $this->controller = '_404';
                 }
-
+                
                 if (class_exists($this->controller)) {
                     $controller = new $this->controller;
-                    call_user_func_array([$controller, $this->method], []);
+                    // Select method
+                    if(!empty($URL[1])) {
+                        if (method_exists($controller, $URL[1] )) {
+                            $this->method = $URL[1];
+                            unset($URL[1]);
+                        }
+                    }
+                    call_user_func_array([$controller, $this->method], $URL);
                 } else {
                     throw new Exception("Controller class '{$this->controller}' not found.");
+
                 }
+                
             } catch (Exception $e) {
                 $this->handleError("Controller Error", $e);
             }
