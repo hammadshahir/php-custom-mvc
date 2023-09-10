@@ -11,31 +11,44 @@ Trait Database
 
     public function query($query, $data = [])
     {
-        $con = $this->connect();
-        $stm = $con->prepare($query);
+        try {
+            $con = $this->connect();
+            $stm = $con->prepare($query);
 
-        if ($stm->execute($data)) {
-            $result = $stm->fetchAll(PDO::FETCH_OBJ);
-            if (!empty($result)) {
-                return $result;
+            if ($stm->execute($data)) {
+                $result = $stm->fetchAll(PDO::FETCH_OBJ);
+                if (!empty($result)) {
+                    return $result;
+                }
             }
-        }
 
-        return false;
+            return false;
+        } catch (PDOException $e) {
+            // throw $e;
+            echo "Database query failed: " . $e->getMessage();
+            return false;
+        }
     }
+
 
     public function get_row($query, $data = [])
     {
-        $con = $this->connect();
-        $stm = $con->prepare($query);
-
-        if ($stm->execute($data)) {
-            $result = $stm->fetch(PDO::FETCH_OBJ);
-            if ($result) {
-                return $result;
+        try {
+            $con = $this->connect();
+            $stm = $con->prepare($query);
+    
+            if ($stm->execute($data)) {
+                $result = $stm->fetch(PDO::FETCH_OBJ);
+                if ($result) {
+                    return $result;
+                }
             }
+    
+            return false;
+        } catch (PDOException $e) {
+            // throw $e;
+            echo "Database query failed: " . $e->getMessage();
+            return false;
         }
-
-        return false;
-    }
+    }    
 }

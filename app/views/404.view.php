@@ -13,7 +13,7 @@
             <div class="col-md-6 offset-md-3">
                 <div class="alert alert-danger">
                     <h1 class="display-4">Error</h1>
-                    <p class="lead"><?php echo $errorMessage; ?></p>
+                    <p class="lead">404 Not Found!</p>
                 </div>
             </div>
         </div>
