@@ -2,50 +2,40 @@
 
 Trait Database
 {
-
-	private function connect()
+    private function connect()
 	{
 		$string = "mysql:hostname=".DBHOST.";dbname=".DBNAME;
 		$con = new PDO($string,DBUSER,DBPASS);
 		return $con;
 	}
 
-	public function query($query, $data = [])
-	{
+    public function query($query, $data = [])
+    {
+        $con = $this->connect();
+        $stm = $con->prepare($query);
 
-		$con = $this->connect();
-		$stm = $con->prepare($query);
+        if ($stm->execute($data)) {
+            $result = $stm->fetchAll(PDO::FETCH_OBJ);
+            if (!empty($result)) {
+                return $result;
+            }
+        }
 
-		$check = $stm->execute($data);
-		if($check)
-		{
-			$result = $stm->fetchAll(PDO::FETCH_OBJ);
-			if(is_array($result) && count($result))
-			{
-				return $result;
-			}
-		}
+        return false;
+    }
 
-		return false;
-	}
+    public function get_row($query, $data = [])
+    {
+        $con = $this->connect();
+        $stm = $con->prepare($query);
 
-	public function get_row($query, $data = [])
-	{
+        if ($stm->execute($data)) {
+            $result = $stm->fetch(PDO::FETCH_OBJ);
+            if ($result) {
+                return $result;
+            }
+        }
 
-		$con = $this->connect();
-		$stm = $con->prepare($query);
-
-		$check = $stm->execute($data);
-		if($check)
-		{
-			$result = $stm->fetchAll(PDO::FETCH_OBJ);
-			if(is_array($result) && count($result))
-			{
-				return $result[0];
-			}
-		}
-
-		return false;
-	}
-	
+        return false;
+    }
 }
