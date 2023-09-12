@@ -21,7 +21,7 @@ if($_SERVER['SERVER_NAME'] == 'localhost')
 
 }
 
-define('APP_NAME', 'My MVC Framework in PHP');
+define('APP_NAME', 'HH MVC Framework in PHP');
 define('APP_DESC', 'Web application created by cool Minimalist MVC in PHP');
 
 // true means show errors. Change it to false when in production
