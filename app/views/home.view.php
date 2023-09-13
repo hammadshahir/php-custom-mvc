@@ -51,6 +51,7 @@
                         <li><a href="<?=ROOT?>" class="nav-link px-2 text-secondary">Home</a></li>
                         <li><a href="<?=ROOT?>/signin" class="nav-link px-2 text-white">Sign In</a></li>
                         <li><a href="<?=ROOT?>/signup" class="nav-link px-2 text-white">Sign Up</a></li>
+                        <li><a href="<?=ROOT?>/logout" class="nav-link px-2 text-white">Logout</a></li>
                         <li><a href="https://wwww.linkedIn.com/in/hammadshahir" class="nav-link px-2 text-white">Contact</a></li>
                     </ul>
                 </div>
