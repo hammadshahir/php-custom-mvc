@@ -12,7 +12,7 @@ function esc($str)
     return htmlspecialchars($str);
 }
 
-function redirectToHome($path)
+function redirect($path)
 {
     header("Location: " . ROOT. '/' .$path);
     die;
