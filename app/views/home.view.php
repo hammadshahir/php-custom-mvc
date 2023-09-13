@@ -44,10 +44,10 @@
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="<?ROOT?>" class="nav-link px-2 text-secondary">Home</a></li>
-                <li><a href="<?ROOT?>/signin" class="nav-link px-2 text-white">Sign In</a></li>
-                <li><a href="<?ROOT?>/signup" class="nav-link px-2 text-white">Sign Up</a></li>
-                <li><a href="<?ROOT?>" class="nav-link px-2 text-white">Contact</a></li>
+                <li><a href="<?=ROOT?>" class="nav-link px-2 text-secondary">Home</a></li>
+                <li><a href="<?=ROOT?>/signin" class="nav-link px-2 text-white">Sign In</a></li>
+                <li><a href="<?=ROOT?>/signup" class="nav-link px-2 text-white">Sign Up</a></li>
+                <li><a href="<?=ROOT?>" class="nav-link px-2 text-white">Contact</a></li>
             </ul>
         </div>
         </div>
