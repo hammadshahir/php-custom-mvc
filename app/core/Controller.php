@@ -2,11 +2,15 @@
 
 Trait Controller
 {
-    public function view($name)
+    public function view($name, $data = [])
     {
+        if(!empty($data))
+            extract($data);
+
         $viewFileName = $this->getViewFileName($name);
 
-        if (file_exists($viewFileName)) {
+        if (file_exists($viewFileName))
+        {
             require $viewFileName;
         } else {
             // Load the 404 view page

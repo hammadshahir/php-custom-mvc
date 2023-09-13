@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
-    <title>Home | PHP MVC Framework</title>
+    <title>Home | PHP MVC Framework Demo</title>
     
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/cover/">
 
@@ -45,14 +45,10 @@
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="<?ROOT?>" class="nav-link px-2 text-secondary">Home</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">About</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">Demos</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">Contact</a></li>
+                <li><a href="<?ROOT?>/signin" class="nav-link px-2 text-white">Sign In</a></li>
+                <li><a href="<?ROOT?>/signup" class="nav-link px-2 text-white">Sign Up</a></li>
+                <li><a href="<?ROOT?>" class="nav-link px-2 text-white">Contact</a></li>
             </ul>
-            <div class="text-end">
-                <a href="<?=ROOT?>/login" class="button btn btn-outline-light me-2">Login</</a>
-                <a href="<?=ROOT?>/signup" class="btn btn-warning">Sign-up</</a>
-            </div>
         </div>
         </div>
     </header>

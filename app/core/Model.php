@@ -8,6 +8,7 @@ Trait Model
     protected $offset = 0;
     protected $orderByDesc = "DESC";
     protected $orderColumn = "id";
+    public $errors = [];
 
     public function first($data, $data_not = [])
     {
@@ -127,7 +128,7 @@ Trait Model
             if(!empty($this->allowedColumns))
             {
                 foreach ($data as $key => $value) {
-                   if (!in_array([$key, $this->allowedColumns])) {
+                    if (!in_array($key, $this->allowedColumns)) {
                        unset($data[$key]);
                    }
                 }
